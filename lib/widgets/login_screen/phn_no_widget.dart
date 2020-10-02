@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 class PhoneNumberWidget extends StatelessWidget {
@@ -29,6 +30,10 @@ class PhoneNumberWidget extends StatelessWidget {
                     fontSize: SizeConfig.textMultiplier * 2
                   ),
                   decoration: InputDecoration(
+                    hintText: 'Enter Phone Number',
+                    hintStyle: normalTextStyle.copyWith(
+                      fontWeight: FontWeight.w300
+                    ),
                     border: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
@@ -46,11 +51,18 @@ class PhoneNumberWidget extends StatelessWidget {
             ],
           ),
         ),
-        CustomGoldenButton(
-          text: 'Get Code',
-          style: normalTextStyle,
-          width: 65,
-          height: 5,
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx)=> UserProfile())
+            );
+          },
+          child: CustomGoldenButton(
+            text: 'Get Code',
+            style: normalTextStyle,
+            width: 65,
+            height: 5,
+          ),
         )
       ],
     );

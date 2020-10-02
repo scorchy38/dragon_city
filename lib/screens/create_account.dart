@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 class CreateNewAccount extends StatelessWidget {
@@ -108,10 +109,9 @@ class CreateNewAccount extends StatelessWidget {
                   buildCustomRow('Confirm Password', true, TextInputType.text,confirmPasController,false),
                   GestureDetector(
                     onTap: () {
-                      print(nameController.text);
-                      print(emailController.text);
-                      print(DOBController.text);
-                      print(passwordController.text);
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx)=> UserProfile())
+                      );
                     },
                     child: Align(
                       alignment: Alignment.center,

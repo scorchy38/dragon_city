@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 
 import '../../constants.dart';
@@ -61,10 +62,17 @@ class EmailLoginWidget extends StatelessWidget {
           style: normalTextStyle.copyWith(
           ),),
         ),
-        CustomGoldenButton(style: normalTextStyle,
-        text: 'LOGIN',
-        height: 5,
-        width: 65,)
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx)=> UserProfile())
+            );
+          },
+          child: CustomGoldenButton(style: normalTextStyle,
+          text: 'LOGIN',
+          height: 5,
+          width: 65,),
+        )
       ]
     );
   }

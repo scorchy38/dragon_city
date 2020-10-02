@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../constants.dart';
 import '../../size_config.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
+
 class AddProfilePicture extends StatefulWidget {
   @override
   _AddProfilePictureState createState() => _AddProfilePictureState();
@@ -16,8 +15,9 @@ class _AddProfilePictureState extends State<AddProfilePicture> {
 
   File _pickedImage;
 
-  Future<void> selectGallery() async{ 
-    final file=await ImagePicker().getImage(source: ImageSource.gallery,maxWidth: 1024,maxHeight: 1024);
+  Future<void> selectGallery() async{
+    final file=await ImagePicker().getImage(
+        source: ImageSource.gallery,maxWidth: 1024,maxHeight: 1024);
     if(file==null)
       return;
     final _imageTaken = File(file.path);

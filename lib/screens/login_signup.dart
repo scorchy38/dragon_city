@@ -105,34 +105,36 @@ class _LoginSignUpState extends State<LoginSignUp> {
                             ),
                           ),
                           SizedBox(height: SizeConfig.heightMultiplier * 2,),
-//                          Container(
-//                            height: SizeConfig.heightMultiplier * 30,
-//                            width: SizeConfig.widthMultiplier * 100,
-//                            child: !isEmailSelected ? PhoneNumberWidget() : EmailLoginWidget()
-//                          ),
-//
-                        //Below code is for animating the change of widgets
                           Container(
                             height: SizeConfig.heightMultiplier * 30,
                             width: SizeConfig.widthMultiplier * 100,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                AnimatedOpacity(
-                                    duration: Duration(milliseconds: 200),
-                                    opacity: phnOpacity ,
-                                    curve: Curves.easeIn,
-                                    child: PhoneNumberWidget()
-                                ),
-                                AnimatedOpacity(
-                                    duration: Duration(milliseconds: 200),
-                                    opacity: emailOpacity ,
-                                    curve: Curves.easeIn,
-                                    child: EmailLoginWidget()
-                                )
-                              ],
-                            ),
+                            child: !isEmailSelected ? PhoneNumberWidget() : EmailLoginWidget()
                           ),
+
+                        //Below code is for animating the change of widgets
+//                          Container(
+//                            height: SizeConfig.heightMultiplier * 30,
+//                            width: SizeConfig.widthMultiplier * 100,
+//                            child: Stack(
+//                              alignment: Alignment.center,
+//                              children: [
+//                                AnimatedOpacity(
+//                                    duration: Duration(milliseconds: 200),
+//                                    opacity: phnOpacity ,
+//                                    curve: Curves.easeIn,
+//                                    child: PhoneNumberWidget()
+//                                ),
+//                                AnimatedOpacity(
+//                                    duration: Duration(milliseconds: 200),
+//                                    opacity: emailOpacity ,
+//                                    curve: Curves.easeIn,
+//                                    child: EmailLoginWidget()
+//                                )
+//                              ],
+//                            ),
+//                          ),
+
+                        //Animation Code ends here
                           SizedBox(height: SizeConfig.heightMultiplier * 2,),
                           Align(
                             alignment: Alignment.center,

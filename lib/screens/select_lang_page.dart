@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/screens/login_signup.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 
@@ -43,13 +44,27 @@ class LanguageSelectorPage extends StatelessWidget {
                        crossAxisAlignment: CrossAxisAlignment.center,
                        children: [
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
-                         Text('Choose a language to continue',
+                         Text(
+                           'Choose a language to continue',
                          style: normalTextStyle,
                          ),
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
-                         CustomGoldenButton(text: 'Arabic',style: alikeTextStyle,width: 50,height: 5.2,),
+                         GestureDetector(
+                           onTap: () {
+                             Navigator.of(context).push(
+                               MaterialPageRoute(builder: (ctx)=> LoginSignUp())
+                             );
+                           },
+                             child: CustomGoldenButton(text: 'Arabic',style: alikeTextStyle,width: 50,height: 5.2,)),
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
-                         CustomGoldenButton(text: 'English',style: alikeTextStyle,width: 50,height: 5.2,)
+                         GestureDetector(
+                           onTap: () {
+                             Navigator.of(context).push(
+                                 MaterialPageRoute(builder: (ctx)=> LoginSignUp())
+                             );
+
+                           },
+                             child: CustomGoldenButton(text: 'English',style: alikeTextStyle,width: 50,height: 5.2,))
                        ],
                      ),
                    ),
