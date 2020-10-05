@@ -3,23 +3,26 @@ import 'package:flutterdragoncity/constants.dart';
 import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
-class CreateNewAccount extends StatelessWidget {
+class CreateNewAccount extends StatefulWidget {
 
-   String email;
-   String fullName;
-   String password;
-   String confirmPassword;
-   String mobileNumber;
-   String DOB;
+  @override
+  _CreateNewAccountState createState() => _CreateNewAccountState();
+}
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasController = TextEditingController();
-  TextEditingController mobileNumController = TextEditingController();
-  TextEditingController DOBController = TextEditingController();
+class _CreateNewAccountState extends State<CreateNewAccount> {
+  String email;
+  String fullName;
+  String password;
+  String confirmPassword;
+  String mobileNumber;
+  String DOB;
 
-
+  TextEditingController nameController;
+  TextEditingController emailController;
+  TextEditingController passwordController;
+  TextEditingController confirmPasController;
+  TextEditingController mobileNumController;
+  TextEditingController DOBController ;
 
 
 
@@ -33,11 +36,12 @@ class CreateNewAccount extends StatelessWidget {
   {
     return  Container(
       width: double.infinity,
-      child: TextFormField(
+      child: TextField(
         controller: controller,
         obscureText: obscure,
         keyboardType:  textInputType,
         style: normalTextStyle.copyWith(
+          color: Colors.white,
             fontSize: SizeConfig.textMultiplier * 2,
           fontWeight: FontWeight.w400
         ),
@@ -46,7 +50,10 @@ class CreateNewAccount extends StatelessWidget {
           labelStyle: normalTextStyle,
           prefix: isPrefix? Container(
             child: Text('+456 ',style: normalTextStyle,),
-          ):Container(),
+          ):Container(
+            height: 0,
+              width: 0,
+          ),
           border: UnderlineInputBorder(
               borderSide: BorderSide(
                   color: Colors.grey,
@@ -74,16 +81,38 @@ class CreateNewAccount extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    mobileNumController = TextEditingController();
+    DOBController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasController = TextEditingController();
+  }
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    mobileNumController.dispose();
+    DOBController.dispose();
+    passwordController.dispose();
+    confirmPasController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    var safeAreaVertical = MediaQuery.of(context).padding.top;
     return SafeArea(
       top: true,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Container(
-            height: SizeConfig.heightMultiplier * 100,
+            height: SizeConfig.heightMultiplier * 100 - safeAreaVertical,
             decoration: BoxDecoration(
               gradient: backgroundGradient
             ),
@@ -95,7 +124,7 @@ class CreateNewAccount extends StatelessWidget {
                 children: [
                   Container(
                     height: SizeConfig.heightMultiplier * 10,
-                    width: SizeConfig.widthMultiplier *40,
+                    width: SizeConfig.widthMultiplier *50,
                     child: Text(
                       'Create Account',
                       style: shojuTextStyle,
@@ -178,7 +207,6 @@ class CreateNewAccount extends StatelessWidget {
                           ),
                         ),
                       ),
-                  SizedBox(height: SizeConfig.heightMultiplier * 1,)
                 ],
               ),
             ),

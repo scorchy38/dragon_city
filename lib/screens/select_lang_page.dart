@@ -32,7 +32,10 @@ class LanguageSelectorPage extends StatelessWidget {
               Expanded(
                   flex: 3,
                   child: Container(
-                   child: Image.asset('assets/images/center_logo.png'),
+                   child: Image.asset('assets/vectors/objects.png',
+                   fit: BoxFit.cover,
+                   scale: 3,
+                   ),
                   )
               ),
               Expanded(

@@ -13,7 +13,8 @@ class SizeConfig {
   static bool isPortrait = true;
   static bool isMobilePortrait = false;
 
-  void init(BoxConstraints constraints, Orientation orientation) {
+
+  void init(BoxConstraints constraints, Orientation orientation,BuildContext context) {
     if (orientation == Orientation.portrait) {
       _screenWidth = constraints.maxWidth;
       _screenHeight = constraints.maxHeight;

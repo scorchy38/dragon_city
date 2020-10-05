@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/screens/create_account.dart';
+import 'package:flutterdragoncity/screens/hompage.dart';
 import 'package:flutterdragoncity/screens/login_signup.dart';
+import 'package:flutterdragoncity/screens/otp_screen.dart';
 import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
       {
         return  OrientationBuilder(
             builder: (context,orientation) {
-              SizeConfig().init(constraints, orientation);
+              SizeConfig().init(constraints, orientation,context);
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Dragon City',
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
                   primarySwatch: Colors.blue,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
-                home: LanguageSelectorPage(),
+                home: Homepage(),
               );
             }
         );
