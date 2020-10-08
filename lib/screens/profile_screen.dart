@@ -22,7 +22,7 @@ class _UserProfileState extends State<UserProfile> {
   Widget buildCustomTile(String title, IconData icon, int id,bool isExpanded) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: isExpanded ? SizeConfig.heightMultiplier * 30 : SizeConfig.heightMultiplier * 5,
+      height: isExpanded ? SizeConfig.heightMultiplier * 30 : SizeConfig.heightMultiplier * 7,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -98,26 +98,29 @@ class _UserProfileState extends State<UserProfile> {
   Widget buildNoExpandTile(String title, IconData icon, int id) {
     return GestureDetector(
       onTap: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(
-            icon,
-            color: Colors.red,
-            size: SizeConfig.heightMultiplier * 3.2,
-          ),
-          Spacer(flex: 1,),
-          Container(
-            width: SizeConfig.widthMultiplier * 65,
-            child: Text(
-              title,
-              style: normalTextStyle.copyWith(
-                  color: Colors.black, fontSize: SizeConfig.textMultiplier * 2.1),
+      child: Container(
+        height: SizeConfig.heightMultiplier * 7,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              color: Colors.red,
+              size: SizeConfig.heightMultiplier * 3.2,
             ),
-          ),
-          Spacer(flex: 1,)
-        ],
+            Spacer(flex: 1,),
+            Container(
+              width: SizeConfig.widthMultiplier * 65,
+              child: Text(
+                title,
+                style: normalTextStyle.copyWith(
+                    color: Colors.black, fontSize: SizeConfig.textMultiplier * 2.1),
+              ),
+            ),
+            Spacer(flex: 1,)
+          ],
     ),
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/screens/otp_screen.dart';
 import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
@@ -54,7 +55,7 @@ class PhoneNumberWidget extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx)=> UserProfile())
+                MaterialPageRoute(builder: (ctx)=> OtpPage())
             );
           },
           child: CustomGoldenButton(

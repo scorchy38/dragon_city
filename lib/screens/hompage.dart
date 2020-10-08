@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/data/dummy_data.dart';
 import 'package:flutterdragoncity/size_config.dart';
+import 'package:flutterdragoncity/widgets/homepage/main_view.dart';
 import 'package:flutterdragoncity/widgets/shop_widget.dart';
 class Homepage extends StatefulWidget {
   @override
@@ -10,29 +12,6 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
 
 
-
-  List<ShopViewWidget> shops = [
-    ShopViewWidget(
-      imagePath: 'assets/images/shop_toys.png',
-      shopTitle: 'Toys',
-      numbers: '183',
-    ),
-    ShopViewWidget(
-      imagePath: 'assets/images/shop_kitchen.png',
-      shopTitle: 'Kitchen',
-      numbers: '165',
-    ),
-    ShopViewWidget(
-      imagePath: 'assets/images/shop_carpet.png',
-      shopTitle: 'Carpet',
-      numbers: '209',
-    ),
-    ShopViewWidget(
-      imagePath: 'assets/images/shop_kitchen.png',
-      shopTitle: 'Grill',
-      numbers: '183',
-    ),
-  ];
   Widget headerRow(String title,int id)
   {
     return Container(
@@ -45,7 +24,7 @@ class _HomepageState extends State<Homepage> {
             title,
             style: shojuTextStyle.copyWith(
               color: Colors.black,
-              fontSize: SizeConfig.textMultiplier * 1.9,
+              fontSize: SizeConfig.textMultiplier * 2,
               fontWeight: FontWeight.w400
             ),
           ),
@@ -85,6 +64,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                   height: SizeConfig.heightMultiplier * 46,
                   width: double.infinity,
+                  child: MainView(),
                 ),
                 Container(
                   color: Colors.white,
@@ -96,34 +76,19 @@ class _HomepageState extends State<Homepage> {
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Container(
-                            height: SizeConfig.heightMultiplier * 12.5,
-                            width: SizeConfig.widthMultiplier * 150,
+                            height: SizeConfig.heightMultiplier * 14,
                             child: Row(
-                              children: [
-                                Container(
-                                  width: 100,
-                                  color: Colors.red,
-                                ),
-                                Container(
-                                  width: 200,
-                                  color: Colors.yellow,
-                                ),
-                                Container(
-                                  width: 300,
-                                  color: Colors.blue,
-                                )
-                              ],
-                            ),
+                              children: DummyWigetsData().exploreItems
                           ),
+                        ),
                         ),
                         headerRow('Featured Shops', 2),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Container(
                             height: SizeConfig.heightMultiplier * 15,
-                            width: SizeConfig.widthMultiplier * 150,
                             child: Row(
-                              children: shops
+                              children: DummyWigetsData().shops
                             ),
                           ),
                         ),
@@ -131,13 +96,24 @@ class _HomepageState extends State<Homepage> {
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Container(
-                            height: SizeConfig.heightMultiplier * 15,
+                            height: SizeConfig.heightMultiplier * 14,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                             children: shops,
+                             children: DummyWigetsData().serviceItems,
                             ),
                           ),
                         ),
+                        headerRow('Most Viewed Shops', 4),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Container(
+                            height: SizeConfig.heightMultiplier * 15,
+                            child: Row(
+                                children: DummyWigetsData().shops
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: SizeConfig.heightMultiplier * 3,),
                       ],
                     ),
                   ),

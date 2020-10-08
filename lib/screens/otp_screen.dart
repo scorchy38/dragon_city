@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/screens/hompage.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 import '../constants.dart';
@@ -117,11 +118,18 @@ class OtpPage extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 2,
-                  child: CustomGoldenButton(
-                    style: normalTextStyle,
-                    width: 65,
-                    height: 6,
-                    text: 'Verify',
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push
+                        (MaterialPageRoute(builder: (ctx)=> Homepage())
+                      );
+                    },
+                    child: CustomGoldenButton(
+                      style: normalTextStyle,
+                      width: 65,
+                      height: 6,
+                      text: 'Verify',
+                    ),
                   )
                   ),
                 Spacer(
