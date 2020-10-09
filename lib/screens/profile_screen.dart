@@ -22,7 +22,7 @@ class _UserProfileState extends State<UserProfile> {
   Widget buildCustomTile(String title, IconData icon, int id,bool isExpanded) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: isExpanded ? SizeConfig.heightMultiplier * 30 : SizeConfig.heightMultiplier * 7,
+      height: isExpanded ? SizeConfig.heightMultiplier * 30 : SizeConfig.heightMultiplier * 6,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -33,7 +33,7 @@ class _UserProfileState extends State<UserProfile> {
               Icon(
                 icon,
                 color: Colors.red,
-                size: SizeConfig.heightMultiplier * 3.2,
+                size: SizeConfig.heightMultiplier * 3,
               ),
               Spacer(flex: 1,),
               Container(
@@ -42,7 +42,7 @@ class _UserProfileState extends State<UserProfile> {
                   title,
                   textAlign: TextAlign.start,
                   style: normalTextStyle.copyWith(
-                      color: Colors.black, fontSize: SizeConfig.textMultiplier * 2.1),
+                      color: Colors.black, fontSize: SizeConfig.textMultiplier * 2),
                 ),
               ),
               Spacer(flex: 1,),
@@ -75,7 +75,7 @@ class _UserProfileState extends State<UserProfile> {
                   child: Icon(
                     Icons.expand_more,
                     color: Colors.black,
-                    size: SizeConfig.heightMultiplier * 2.5,
+                    size: SizeConfig.heightMultiplier * 2.2,
                   ),
                 ),
               )
@@ -99,14 +99,14 @@ class _UserProfileState extends State<UserProfile> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        height: SizeConfig.heightMultiplier * 7,
+        height: SizeConfig.heightMultiplier * 6,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(
               icon,
               color: Colors.red,
-              size: SizeConfig.heightMultiplier * 3.2,
+              size: SizeConfig.heightMultiplier * 3,
             ),
             Spacer(flex: 1,),
             Container(
@@ -114,7 +114,7 @@ class _UserProfileState extends State<UserProfile> {
               child: Text(
                 title,
                 style: normalTextStyle.copyWith(
-                    color: Colors.black, fontSize: SizeConfig.textMultiplier * 2.1),
+                    color: Colors.black, fontSize: SizeConfig.textMultiplier * 2),
               ),
             ),
             Spacer(flex: 1,)

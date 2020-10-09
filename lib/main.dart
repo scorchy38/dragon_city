@@ -5,6 +5,7 @@ import 'package:flutterdragoncity/screens/login_signup.dart';
 import 'package:flutterdragoncity/screens/otp_screen.dart';
 import 'package:flutterdragoncity/screens/profile_screen.dart';
 import 'package:flutterdragoncity/screens/shop_detail.dart';
+import 'package:flutterdragoncity/screens/tab_screen.dart';
 import 'package:flutterdragoncity/size_config.dart';
 
 import 'screens/select_lang_page.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
                   primarySwatch: Colors.blue,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
-                home: Homepage(),
+                home: TabScreen(),
               );
             }
         );
