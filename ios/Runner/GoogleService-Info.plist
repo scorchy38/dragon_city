@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>187746485790-sjn7u32kpo2g59mhg0vj4ekkih3i3n4n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.187746485790-sjn7u32kpo2g59mhg0vj4ekkih3i3n4n</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>187746485790-b0h870bi5qkv8oo13lo4mo4chefsbgdk.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCHfJiiH3enq11Bgykzwlxn7u3KpjKaDyE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>187746485790</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterdragoncity</string>
+	<key>PROJECT_ID</key>
+	<string>dragonmallapp-2016a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dragonmallapp-2016a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:187746485790:ios:37ebd74349bd03f619900f</string>
+	<key>DATABASE_URL</key>
+	<string>https://dragonmallapp-2016a.firebaseio.com</string>
+</dict>
+</plist>
