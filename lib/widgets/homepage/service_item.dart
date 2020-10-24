@@ -50,7 +50,7 @@ class ServiceItem extends StatelessWidget {
               height: SizeConfig.heightMultiplier * 3,
               width: SizeConfig.widthMultiplier * 20,
               child: Text(
-                label,
+                getTranslated(context,label),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -58,7 +58,6 @@ class ServiceItem extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   fontSize: SizeConfig.textMultiplier * 1.7,
                   color: Colors.black,
-
                 ),
               ),
             )

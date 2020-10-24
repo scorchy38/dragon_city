@@ -20,7 +20,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
     with SingleTickerProviderStateMixin {
 
 
-  double alignmentPosition = -0.5;
+  double alignmentPosition = -SizeConfig.widthMultiplier/10.5;
   AnimationController controller;
   Animation animation;
   Animation<Color> colorAnim1, colorAnim2, colorAnim3;
@@ -39,7 +39,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
 
     controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    animation = Tween(begin: -0.5, end: 0.0).animate(controller);
+    animation = Tween(begin: -SizeConfig.widthMultiplier/10.5, end: 0.0).animate(controller);
     colorAnim1 =
         ColorTween(begin: Colors.black, end: Colors.white).animate(controller);
     colorAnim2 =
@@ -73,20 +73,20 @@ class _CustomBottomBarState extends State<CustomBottomBar>
             child: Container(
 
                 height: SizeConfig.heightMultiplier * 7,
-                width: SizeConfig.widthMultiplier * 80,
+                width: SizeConfig.widthMultiplier * 70,
                 decoration: BoxDecoration(
                   gradient: backGrad,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(SizeConfig.heightMultiplier * 10),
+                    topLeft: Radius.circular(SizeConfig.heightMultiplier * 5.5),
                     bottomLeft: Radius.circular(SizeConfig.heightMultiplier * 0.7),
-                    topRight: Radius.circular(SizeConfig.heightMultiplier * 10),
+                    topRight: Radius.circular(SizeConfig.heightMultiplier * 5.5),
                     bottomRight: Radius.circular(SizeConfig.heightMultiplier * 0.7),
                   ),
                 )),
           ),
           Container(
-            height: SizeConfig.heightMultiplier * 7,
-            width: SizeConfig.widthMultiplier * 15,
+            height: SizeConfig.heightMultiplier * 6,
+            width: SizeConfig.heightMultiplier * 6.5,
             child: CustomPaint(
               painter: NavigationItemPainter(),
             ),
@@ -95,10 +95,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
             alignment: Alignment(0, 0),
             child: GestureDetector(
               onTap: () {
-                print('tapped2');
-                if(controller.status == AnimationStatus.forward)
-                  controller.stop();
-                if(alignmentPosition == -0.5)
+                if(alignmentPosition == -SizeConfig.widthMultiplier/10.5)
                 {
                   colorAnim1 = ColorTween(
                       begin: Colors.black, end: Colors.white)
@@ -112,7 +109,7 @@ class _CustomBottomBarState extends State<CustomBottomBar>
 
                 }
                 else
-                if(alignmentPosition == 0.5)
+                if(alignmentPosition == SizeConfig.widthMultiplier/10.5)
                 {
                   colorAnim3 = ColorTween(
                       begin: Colors.black, end: Colors.white)
@@ -139,7 +136,8 @@ class _CustomBottomBarState extends State<CustomBottomBar>
               },
               child: Container(
                 height: SizeConfig.heightMultiplier * 4.5,
-                width: SizeConfig.widthMultiplier * 15,
+                width: SizeConfig.widthMultiplier * 14,
+                color: Colors.transparent,
                 child: Icon(
                   Icons.location_on,
                   color: colorAnim2.value,
@@ -149,13 +147,10 @@ class _CustomBottomBarState extends State<CustomBottomBar>
             ),
           ),
           Align(
-            alignment: Alignment(0.5, 0),
+            alignment: Alignment(SizeConfig.widthMultiplier/10.5, 0),
             child: GestureDetector(
               onTap: () {
-                print('tapped3');
-                if(controller.status == AnimationStatus.forward)
-                  controller.stop();
-                if(alignmentPosition == -0.5)
+                if(alignmentPosition == -SizeConfig.widthMultiplier/10.5)
                 {
                   colorAnim1 = ColorTween(
                       begin: Colors.black, end: Colors.white)
@@ -182,9 +177,9 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                       .animate(controller);
 
                 }
-                animation = Tween(begin: alignmentPosition, end: 0.5)
+                animation = Tween(begin: alignmentPosition, end: SizeConfig.widthMultiplier/10.5)
                     .animate(controller);
-                alignmentPosition = 0.5;
+                alignmentPosition = SizeConfig.widthMultiplier/10.5;
                 widget.changePage(2);
                 setState(() {
 
@@ -195,7 +190,8 @@ class _CustomBottomBarState extends State<CustomBottomBar>
               },
               child: Container(
                 height: SizeConfig.heightMultiplier * 4.5,
-                width: SizeConfig.widthMultiplier * 15,
+                width: SizeConfig.widthMultiplier * 14,
+                color: Colors.transparent,
                 child: Icon(
                   Icons.person,
                   color: colorAnim3.value,
@@ -205,13 +201,11 @@ class _CustomBottomBarState extends State<CustomBottomBar>
             ),
           ),
           Align(
-            alignment: Alignment(-0.5, 0),
+            alignment: Alignment(-SizeConfig.widthMultiplier/10.5, 0),
             child: GestureDetector(
               onTap: () {
-                print('tapped1');
-                if(controller.status == AnimationStatus.forward)
-                  controller.stop();
-                if(alignmentPosition == 0.5)
+
+                if(alignmentPosition == SizeConfig.widthMultiplier/10.5)
                 {
                   colorAnim1 = ColorTween(
                       begin: Colors.white, end: Colors.black)
@@ -238,9 +232,9 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                       .animate(controller);
 
                 }
-                animation = Tween(begin: alignmentPosition, end: -0.5)
+                animation = Tween(begin: alignmentPosition, end: -SizeConfig.widthMultiplier/10.5)
                     .animate(controller);
-                alignmentPosition = -0.5;
+                alignmentPosition = -SizeConfig.widthMultiplier/10.5;
                 widget.changePage(0);
                 setState(() {
 
@@ -250,8 +244,9 @@ class _CustomBottomBarState extends State<CustomBottomBar>
                 controller.forward();
               },
               child: Container(
-                height: SizeConfig.heightMultiplier * 5,
-                width: SizeConfig.widthMultiplier * 15,
+                height: SizeConfig.heightMultiplier * 4.5,
+                width: SizeConfig.widthMultiplier * 14,
+                color: Colors.transparent,
                 child: Icon(
                   Icons.home,
                   color: colorAnim1.value,
@@ -306,7 +301,7 @@ class NavigationItemPainter extends CustomPainter{
 
     canvas.drawPath(path, paint);
     canvas.drawCircle(Offset(radius , radius), radius/2 + radius/4, criclePaint);
-    canvas.drawCircle(Offset(radius , radius), radius/3 + radius/4 , midCirclePaint);
+    canvas.drawCircle(Offset(radius , radius), radius/3 + radius/3 , midCirclePaint);
 
   }
 

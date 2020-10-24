@@ -1,12 +1,26 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/models/auth_services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../size_config.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
 
 class AddProfilePicture extends StatefulWidget {
+
+  //TODO: Get context of scaffold
+  final String name;
+  final String imageLink;
+
+  AddProfilePicture({
+    this.name,
+    this.imageLink
+});
   @override
   _AddProfilePictureState createState() => _AddProfilePictureState();
 }
@@ -14,6 +28,10 @@ class AddProfilePicture extends StatefulWidget {
 class _AddProfilePictureState extends State<AddProfilePicture> {
 
   File _pickedImage;
+  String pathName;
+  StorageReference _storageReference;
+  FirebaseAuth _auth;
+
 
   Future<void> selectGallery() async{
     final file=await ImagePicker().getImage(
@@ -22,10 +40,39 @@ class _AddProfilePictureState extends State<AddProfilePicture> {
       return;
     final _imageTaken = File(file.path);
     final appDir=await syspaths.getApplicationDocumentsDirectory();
-    final pathName=path.basename(_imageTaken.path);
+     pathName=path.basename(_imageTaken.path);
     _pickedImage = await _imageTaken.copy("${appDir.path}/$pathName");
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void uploadProfileImage() async
+  {
+    _auth = FirebaseAuth.instance;
+    if(_auth.currentUser!=null) {
+      if (_pickedImage != null) {
+        _storageReference =
+            FirebaseStorage.instance.ref().child(
+                "userProfileImage/${_auth.currentUser.uid}/$pathName");
+        final StorageUploadTask uploadTask = _storageReference.putFile(
+            _pickedImage);
+        final StorageTaskSnapshot downloadUrl = (await uploadTask.onComplete);
+        final String url = (await downloadUrl.ref.getDownloadURL());
+        FirebaseFirestore.instance.collection('user').doc(_auth.currentUser.uid).update({
+          'ImageUrl':url
+        });
+        Provider.of<AuthServices>(context,listen: false).getUserData(_auth.currentUser.uid);
+      }
+    }
+    else
+      {
+        //Show Toast that not logged in
+      }
+
+  }
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -45,19 +92,30 @@ class _AddProfilePictureState extends State<AddProfilePicture> {
                     Radius.circular(SizeConfig.heightMultiplier * 8)
                 ),
               ),
-              child: _pickedImage == null? Icon(Icons.person,color: Colors.black,
+              child: widget.imageLink == null ? _pickedImage == null?
+              Icon(Icons.person,color: Colors.black,
                   size: SizeConfig.heightMultiplier * 12,):
                 ClipRRect(
                   borderRadius:  BorderRadius.all(
                   Radius.circular(SizeConfig.heightMultiplier * 8)
                   ),
-                    child: Image.file(_pickedImage,fit: BoxFit.cover,)),
+                    child:Image.file(_pickedImage,fit: BoxFit.cover,)
+                ):
+              ClipRRect(
+                  borderRadius:  BorderRadius.all(
+                      Radius.circular(SizeConfig.heightMultiplier * 8)
+                  ),
+                  child:Image.network(widget.imageLink,fit: BoxFit.cover,)
+              )
             ),
             GestureDetector(
               onTap: () {
                 selectGallery().then((value) {
+                  uploadProfileImage();
                   setState(() {});
                 });
+
+
               },
               child: Container(
                   height: SizeConfig.heightMultiplier * 3.2,
@@ -76,7 +134,7 @@ class _AddProfilePictureState extends State<AddProfilePicture> {
           ],
         ),
         Text(
-          'Fatema',
+          widget.name,
           style: normalTextStyle.copyWith(
             fontWeight: FontWeight.w400,
             fontSize: SizeConfig.textMultiplier * 3,

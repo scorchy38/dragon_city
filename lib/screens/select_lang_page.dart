@@ -2,11 +2,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/constants.dart';
+import 'package:flutterdragoncity/data/language.dart';
 import 'package:flutterdragoncity/screens/login_signup.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/custom_golden_button.dart';
 
-class LanguageSelectorPage extends StatelessWidget {
+import '../main.dart';
+
+class LanguageSelectorPage extends StatefulWidget {
+
+
+
+  @override
+  _LanguageSelectorPageState createState() => _LanguageSelectorPageState();
+}
+
+class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void changeLanguage(Language language,BuildContext context) async
+  {
+   Locale _temp = await setLocale(language.languageCode);
+    MyApp.setLocale(context,_temp);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +49,7 @@ class LanguageSelectorPage extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'Language',
+                      getTranslated(context, 'language'),
                     style: shojuTextStyle,
                     )
                   )
@@ -48,26 +73,40 @@ class LanguageSelectorPage extends StatelessWidget {
                        children: [
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
                          Text(
-                           'Choose a language to continue',
+                           getTranslated(context, 'choose_lang'),
                          style: normalTextStyle,
                          ),
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
                          GestureDetector(
                            onTap: () {
+                             changeLanguage(
+                                 Language(
+                                 id: 2,
+                                 languageCode: 'ar',
+                                 countryCode: 'BH'
+                             ), context);
                              Navigator.of(context).push(
                                MaterialPageRoute(builder: (ctx)=> LoginSignUp())
                              );
                            },
-                             child: CustomGoldenButton(text: 'Arabic',style: alikeTextStyle,width: 50,height: 5.2,)),
+                             child: CustomGoldenButton(text: getTranslated(context, 'arabic'),
+                               style: alikeTextStyle,width: 50,height: 5.2,)),
                          SizedBox(height: SizeConfig.heightMultiplier * 2,),
                          GestureDetector(
-                           onTap: () {
+                           onTap: () async{
+                             changeLanguage(
+                                 Language(
+                                     id: 1,
+                                     languageCode: 'en',
+                                     countryCode: 'US'
+                                 ), context);
                              Navigator.of(context).push(
                                  MaterialPageRoute(builder: (ctx)=> LoginSignUp())
                              );
 
                            },
-                             child: CustomGoldenButton(text: 'English',style: alikeTextStyle,width: 50,height: 5.2,))
+                             child: CustomGoldenButton(text: getTranslated(context, 'eng'),
+                               style: alikeTextStyle,width: 50,height: 5.2,))
                        ],
                      ),
                    ),

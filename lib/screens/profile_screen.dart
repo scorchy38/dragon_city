@@ -1,8 +1,17 @@
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/data/user_details.dart';
+import 'package:flutterdragoncity/models/auth_services.dart';
 import 'package:flutterdragoncity/size_config.dart';
 import 'package:flutterdragoncity/widgets/account_widgets/add_profile_pic.dart';
+import 'package:flutterdragoncity/widgets/account_widgets/change_language.dart';
+import 'package:flutterdragoncity/widgets/account_widgets/email_field.dart';
 import 'package:flutterdragoncity/widgets/account_widgets/mobile_number.dart';
-
+import 'package:flutterdragoncity/widgets/account_widgets/saved_shops.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart';
 
 class UserProfile extends StatefulWidget {
@@ -17,12 +26,21 @@ class _UserProfileState extends State<UserProfile> {
   bool phoneNumExpanded = false;
   bool emailIdExpanded = false;
   bool changeLanExpanded = false;
+  String userName;
+  FToast fToast;
 
 
-  Widget buildCustomTile(String title, IconData icon, int id,bool isExpanded) {
+
+  Widget buildCustomTile(
+      String title,
+      IconData icon,
+      int id,
+      bool isExpanded,
+      double height
+      ) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: isExpanded ? SizeConfig.heightMultiplier * 30 : SizeConfig.heightMultiplier * 6,
+      height: isExpanded ? SizeConfig.heightMultiplier * height : SizeConfig.heightMultiplier * 6,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -63,7 +81,18 @@ class _UserProfileState extends State<UserProfile> {
                       phoneNumExpanded = !phoneNumExpanded;
                     });
                   }
-
+                  if (id == 4)
+                  {
+                    setState(() {
+                      emailIdExpanded = !emailIdExpanded;
+                    });
+                  }
+                  if (id == 5)
+                  {
+                    setState(() {
+                      changeLanExpanded = !changeLanExpanded;
+                    });
+                  }
                 },
                 child: Container(
                   height: SizeConfig.heightMultiplier * 3,
@@ -73,7 +102,7 @@ class _UserProfileState extends State<UserProfile> {
                       borderRadius: BorderRadius.all(
                           Radius.circular(SizeConfig.heightMultiplier * 1))),
                   child: Icon(
-                    Icons.expand_more,
+                    isExpanded ? Icons.expand_less : Icons.expand_more,
                     color: Colors.black,
                     size: SizeConfig.heightMultiplier * 2.2,
                   ),
@@ -81,15 +110,18 @@ class _UserProfileState extends State<UserProfile> {
               )
             ],
           ),
-          id == 1? isExpanded ? EditMobileNumber(isExpanded: isExpanded,) :
+          id == 1? isExpanded ? SavedShopsField(isExpanded: isExpanded,toast: fToast ) :
+          SavedShopsField(isExpanded: isExpanded,) :
+          Container(),
+          id == 3? isExpanded ? EditMobileNumber(isExpanded: isExpanded,toast: fToast ) :
           EditMobileNumber(isExpanded: isExpanded,) :
           Container(),
-          id == 2? isExpanded ? EditMobileNumber(isExpanded: isExpanded,) :
-          EditMobileNumber(isExpanded: isExpanded,) :
+          id == 4? isExpanded ? EmailField(isExpanded: isExpanded,toast: fToast,) :
+          EmailField(isExpanded: isExpanded,) :
           Container(),
-          id == 3? isExpanded ? EditMobileNumber(isExpanded: isExpanded,) :
-          EditMobileNumber(isExpanded: isExpanded,) :
-          Container()
+          id == 5? isExpanded ? ChangeLanguageField(isExpanded: isExpanded,toast: fToast,) :
+          ChangeLanguageField(isExpanded: isExpanded,) :
+          Container(),
         ],
       ),
     );
@@ -125,50 +157,64 @@ class _UserProfileState extends State<UserProfile> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+   final  userData = Provider.of<AuthServices>(context,listen: true).userDetails;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-                height: SizeConfig.heightMultiplier * 30,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomRight:
-                            Radius.circular(SizeConfig.heightMultiplier * 2.8),
-                        bottomLeft:
-                            Radius.circular(SizeConfig.heightMultiplier * 2.8)),
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                          Color.fromRGBO(131, 1, 1, 1),
-                          Color.fromRGBO(235, 28, 34, 1)
-                        ])),
-                child: AddProfilePicture()),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.all(SizeConfig.heightMultiplier * 2.8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    buildCustomTile('Saved Shops', Icons.bookmark_border, 1,savedShopsExpanded),
-                    buildCustomTile('Personal Details', Icons.exit_to_app, 2,personalDetailsExpanded),
-                    buildCustomTile('Manage Phone Number', Icons.phone, 3,phoneNumExpanded),
-                    buildCustomTile('Email ID', Icons.email, 4,emailIdExpanded),
-                    buildCustomTile('Change Language', Icons.language, 5,changeLanExpanded),
-                    buildNoExpandTile(
-                        'Feedback & Complaints', Icons.assignment, 6),
-                    buildNoExpandTile('Support', Icons.headset, 7),
-                    buildNoExpandTile('Privacy Policy', Icons.lock_outline, 8),
-                    buildNoExpandTile(
-                        'Terms & Conditions', Icons.error_outline, 9),
-                  ],
+      body: Builder(
+        builder: (scaffoldContext)=>SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                  height: SizeConfig.heightMultiplier * 30,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomRight:
+                              Radius.circular(SizeConfig.heightMultiplier * 2.8),
+                          bottomLeft:
+                              Radius.circular(SizeConfig.heightMultiplier * 2.8)),
+                      gradient: LinearGradient(
+                          begin: Alignment.bottomLeft,
+                          end: Alignment.topRight,
+                          colors: [
+                            Color.fromRGBO(131, 1, 1, 1),
+                            Color.fromRGBO(235, 28, 34, 1)
+                          ])),
+                  child: AddProfilePicture(
+                    name: userData==null?'User1192': userData.username,
+                    imageLink : userData == null ? null : userData.imageUrl
+                  )),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.all(SizeConfig.heightMultiplier * 2.8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildCustomTile(getTranslated(context, 'saved_shops'), Icons.bookmark_border, 1,savedShopsExpanded,34),
+                      buildCustomTile(getTranslated(context, 'personal_details'), Icons.exit_to_app, 2,personalDetailsExpanded,30),
+                      buildCustomTile(getTranslated(context, 'manage_ph_no'), Icons.phone, 3,phoneNumExpanded,30),
+                      buildCustomTile(getTranslated(context, 'email_ID'), Icons.email, 4,emailIdExpanded,30),
+                      buildCustomTile(getTranslated(context, 'change_language'), Icons.language, 5,changeLanExpanded,22),
+                      buildNoExpandTile(
+                          getTranslated(context, 'feedback_complaints'), Icons.assignment, 6),
+                      buildNoExpandTile(getTranslated(context, 'support'), Icons.headset, 7),
+                      buildNoExpandTile(getTranslated(context, 'privacy_policy'), Icons.lock_outline, 8),
+                      buildNoExpandTile(
+                          getTranslated(context, 'terms_cond'), Icons.error_outline, 9),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

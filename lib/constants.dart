@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdragoncity/localization/localization.dart';
 import 'package:flutterdragoncity/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart' as sp;
 
 const LinearGradient backgroundGradient = LinearGradient(
      begin: Alignment.topRight,
@@ -36,3 +38,40 @@ TextStyle normalTextStyle = TextStyle(
 
 const String leftDirection = 'left';
 const String rightDirection = 'right';
+
+
+String getTranslated(BuildContext context,String key)
+{
+  return DemoLocalizations.of(context).getTranslatedValue(key);
+}
+
+const String ENGLISH = 'en';
+const String ARABIC = 'ar';
+
+const String LANGUAGE_CODE = 'languageCode';
+
+    Future<Locale> setLocale(String languageCode) async{
+    sp.SharedPreferences _prefs = await sp.SharedPreferences.getInstance();
+    await _prefs.setString('lang', languageCode);
+    return  _locale(languageCode);
+    }
+
+Future<Locale> getLocale() async{
+  sp.SharedPreferences _prefs = await sp.SharedPreferences.getInstance();
+  String langCode =  _prefs.getString('lang')??'en';
+  return  _locale(langCode);
+}
+Locale _locale(String languageCode) {
+  Locale _temp;
+  switch(languageCode) {
+    case ENGLISH:
+      _temp = Locale(languageCode,'US');
+      break;
+    case ARABIC:
+      _temp = Locale(languageCode,'BH');
+      break;
+    default:
+      _temp = Locale(ENGLISH,'US');
+  }
+  return _temp;
+}

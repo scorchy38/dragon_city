@@ -54,7 +54,7 @@ class ExploreItem extends StatelessWidget {
               height: SizeConfig.heightMultiplier * 3.5,
               width: SizeConfig.widthMultiplier * 20,
               child: Text(
-                label,
+                getTranslated(context, label),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -62,7 +62,6 @@ class ExploreItem extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   fontSize: SizeConfig.textMultiplier * 1.8,
                   color: Colors.black,
-
                 ),
               ),
             )

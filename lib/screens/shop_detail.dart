@@ -16,7 +16,7 @@ class ShopDetail extends StatelessWidget {
         child: Stack(
           children: [
            buildUpperView(context),
-            buildLowerView()
+            buildLowerView(context)
           ],
         ),
       ),
@@ -175,12 +175,12 @@ class ShopDetail extends StatelessWidget {
           Positioned(
               bottom: SizeConfig.heightMultiplier * 2,
               left: SizeConfig.widthMultiplier * 8,
-              child: buildButtons(1, 'Call', Icons.call, 6, 30)
+              child: buildButtons(1,'call', Icons.call, 6, 30,context)
           ),
           Positioned(
               bottom: SizeConfig.heightMultiplier * 2,
               right: SizeConfig.widthMultiplier * 7,
-              child: buildButtons(2, 'Navigate', Icons.directions_walk, 6, 50)
+              child: buildButtons(2, 'navigate', Icons.directions_walk, 6, 50,context)
           ),
           Positioned(
               top: SizeConfig.heightMultiplier * 2,
@@ -208,7 +208,7 @@ class ShopDetail extends StatelessWidget {
     );
   }
 
-  Widget buildLowerView()
+  Widget buildLowerView(BuildContext context)
   {
     return Align(
       alignment: Alignment(0,1),
@@ -280,7 +280,7 @@ class ShopDetail extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Similar Shops',
+                      getTranslated(context, 'similar_shop'),
                       style: shojuTextStyle.copyWith(
                           color: Colors.black,
                           fontSize: SizeConfig.textMultiplier * 2,
@@ -291,7 +291,9 @@ class ShopDetail extends StatelessWidget {
                       onTap: () {
                         //Add viewAll function
                       },
-                      child: Text('View All',style: normalTextStyle.copyWith(
+                      child: Text(
+                        getTranslated(context, 'view_all')
+                      ,style: normalTextStyle.copyWith(
                           color: Colors.black,
                           fontSize: SizeConfig.textMultiplier * 1.5
                       ),),
@@ -320,7 +322,7 @@ class ShopDetail extends StatelessWidget {
     );
   }
 
-  Widget buildButtons(int id,String title, IconData icon, double height,double width)
+  Widget buildButtons(int id,String title, IconData icon, double height,double width,BuildContext context)
   {
     return GestureDetector(
       onTap: () {},
@@ -343,7 +345,7 @@ class ShopDetail extends StatelessWidget {
         child: FlatButton.icon(icon: Icon(icon,color: Colors.white,), onPressed: () {
         },
         label: Text(
-          title,
+          getTranslated(context, title),
         style: normalTextStyle.copyWith(
           fontSize: SizeConfig.textMultiplier * 2
         ),

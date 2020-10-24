@@ -1,5 +1,6 @@
 import 'package:flutterdragoncity/widgets/homepage/explore_items.dart';
 import 'package:flutterdragoncity/widgets/homepage/service_item.dart';
+import 'package:flutterdragoncity/widgets/location/search_item.dart';
 import 'package:flutterdragoncity/widgets/shop_widget.dart';
 
 class DummyWigetsData {
@@ -28,67 +29,44 @@ class DummyWigetsData {
     ),
   ];
 
-  List<ExploreItem> exploreItems = [
 
-    ExploreItem(
-      id: '1',
-      vectorPath: 'assets/vectors/explore_vect/electronics.png',
-        label : 'Electronics'
+
+  List<SearchItem> searchItems = [
+
+    SearchItem(
+      id: 1,
+       title: 'Asna Home Decoration',
+      imagePath: 'assets/images/shop_toys.png',
+      category: 'Toys',
+      steps: '135',
+      time: '15 ',
     ),
-    ExploreItem(
-      id: '2',
-      vectorPath: 'assets/vectors/explore_vect/home_fur.png',
-        label : 'Home Furniture'
+    SearchItem(
+      id: 2,
+      title: 'Asna Home Decoration',
+      imagePath: 'assets/images/shop_kitchen.png',
+      category: 'Food',
+      steps: '135',
+      time: '15 ',
     ),
-    ExploreItem(
-      id: '3',
-      vectorPath: 'assets/vectors/explore_vect/lightening.png',
-        label : 'Lightening'
+    SearchItem(
+      id: 3,
+      title: 'Asna Home Decoration',
+      imagePath: 'assets/images/shop_toys.png',
+      category: 'Bags',
+      steps: '135',
+      time: '15 ',
     ),
-    ExploreItem(
-      id: '4',
-      vectorPath: 'assets/vectors/explore_vect/furniture.png',
-        label : 'Furniture'
+    SearchItem(
+      id: 4,
+      title: 'Asna Home Decoration',
+      imagePath: 'assets/images/shop_carpet.png',
+      category: 'Carpet',
+      steps: '135',
+      time: '15',
+
     ),
-    ExploreItem(
-      id: '5',
-      vectorPath: 'assets/vectors/explore_vect/toys.png',
-        label : 'Toys'
-    )
   ];
 
-  List<ServiceItem> serviceItems = [
-
-    ServiceItem(
-      id: '1',
-      vectorPath: 'assets/vectors/services_vect/bank.png',
-      label : 'Bank'
-    ),
-    ServiceItem(
-      id: '2',
-      vectorPath: 'assets/vectors/services_vect/atm.png',
-        label : 'ATM'
-    ),
-    ServiceItem(
-      id: '3',
-      vectorPath: 'assets/vectors/services_vect/info.png',
-        label : 'Information'
-    ),
-    ServiceItem(
-      id: '4',
-      vectorPath: 'assets/vectors/services_vect/mosque.png',
-        label : 'Mosque'
-    ),
-    ServiceItem(
-      id: '5',
-      vectorPath: 'assets/vectors/services_vect/male_restroom.png',
-        label : 'Male Restroom'
-    ),
-    ServiceItem(
-      id: '6',
-      vectorPath: 'assets/vectors/services_vect/female_restroom.png',
-        label : 'Female Restroom'
-    )
-  ];
 
 }

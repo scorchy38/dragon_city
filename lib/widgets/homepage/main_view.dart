@@ -1,8 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdragoncity/data/dummy_data.dart';
+import 'package:flutterdragoncity/models/auth_services.dart';
 import 'package:flutterdragoncity/size_config.dart';
-class MainView extends StatelessWidget {
+class MainView extends StatefulWidget {
+  @override
+  _MainViewState createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +30,9 @@ class MainView extends StatelessWidget {
                         icon: Image.asset('assets/vectors/menu.png',
                           fit: BoxFit.cover,
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                         AuthServices().signOut();
+                        }),
                   ),
                   Flexible(
                     flex: 4,

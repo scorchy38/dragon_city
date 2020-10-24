@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "187746485790",
+    "firebase_url": "https://dragonmallapp-2016a.firebaseio.com",
+    "project_id": "dragonmallapp-2016a",
+    "storage_bucket": "dragonmallapp-2016a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187746485790:android:02386ec32234a48e19900f",
+        "android_client_info": {
+          "package_name": "com.example.flutterdragoncity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187746485790-a5nnqsishahg2b7fucogc7atpttmv89k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterdragoncity",
+            "certificate_hash": "a94ab6e363134e5d3620804bb5ee857835004102"
+          }
+        },
+        {
+          "client_id": "187746485790-ba52kqdrudcpdkireh5b9jum4cl29aqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8o00CYozY4hkPmZBQaHCHOPuvHwjLb1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187746485790-ba52kqdrudcpdkireh5b9jum4cl29aqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

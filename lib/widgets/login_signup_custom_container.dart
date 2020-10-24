@@ -22,7 +22,7 @@ class HighlightedLSContainer extends StatelessWidget {
         ),
         child: Text(text,
         style: normalTextStyle.copyWith(
-          fontSize: SizeConfig.textMultiplier * 2.3,
+          fontSize: SizeConfig.textMultiplier * 2.2,
             fontWeight: FontWeight.w700
         ),),
       ),
@@ -55,7 +55,7 @@ class NormalLSContainer extends StatelessWidget {
           ),
           child: Text(text,
             style: normalTextStyle.copyWith(
-                fontSize: SizeConfig.textMultiplier * 2.3,
+                fontSize: SizeConfig.textMultiplier * 2.2,
               fontWeight: FontWeight.w400
             ),),
         ),
